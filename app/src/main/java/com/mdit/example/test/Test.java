@@ -30,5 +30,9 @@ public class Test {
         Toast.makeText(ctx, "--333333----", Toast.LENGTH_SHORT).show();
     }
 
+    public static void toast3static(Context ctx){
+        Toast.makeText(ctx, "--333333 static----", Toast.LENGTH_SHORT).show();
+    }
+
 
 }

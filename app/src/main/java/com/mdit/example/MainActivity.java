@@ -3,14 +3,13 @@ package com.mdit.example;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.Printer;
 import android.view.View;
 
 import com.mdit.example.test.Test;
-import com.mdit.library.proxy.CallbackFilter;
-import com.mdit.library.proxy.Enhancer;
-import com.mdit.library.proxy.MethodInterceptor;
-import com.mdit.library.proxy.MethodProxy;
-import com.mdit.library.proxy.NoOp;
+import com.taobao.android.dexposed.DexposedBridge;
+import com.taobao.android.dexposed.XC_MethodHook;
+
 
 import java.lang.reflect.Method;
 
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void click1(View v){
 
-        Enhancer enhancer = new Enhancer(this);
+        /*Enhancer enhancer = new Enhancer(this);
         enhancer.setSuperclass(Test.class);
         enhancer.setCallback(new MethodInterceptor() {
             @Override
@@ -41,14 +40,29 @@ public class MainActivity extends AppCompatActivity {
         });
         Test test = (Test) enhancer.create();
 
-        test.toast2(this);
+        test.toast2(this);*/
+
+        DexposedBridge.hookAllMethods(Test.class, "", new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                super.beforeHookedMethod(param);
+            }
+
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                super.afterHookedMethod(param);
+            }
+        });
 
 
     }
 
     public void click2(View v){
 
-        Enhancer enhancer = new Enhancer(this);
+       /* Test printer = (Test) new MyProxy(this).getProxy(Printer.class);
+        printer.toast3(this);*/
+
+       /* Enhancer enhancer = new Enhancer(this);
         enhancer.setSuperclass(Test.class);
         enhancer.setCallbacks(new MethodInterceptor[]{NoOp.INSTANCE,new MethodInterceptor() {
             @Override
@@ -70,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         });
         Test test = (Test) enhancer.create();
 
-        test.toast3(this);
+        test.toast3(this);*/
 
     }
 }

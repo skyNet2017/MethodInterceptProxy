@@ -208,6 +208,10 @@ public class Enhancer {
 //				continue;
 //			}
 
+			if (Modifier.isStatic(method.getModifiers())){
+				continue;
+			}
+
 			Local retLocal = code.newLocal(methodReturnType);
 			Local retPackLocal = null;
 			if (retClass.isPrimitive()) {
