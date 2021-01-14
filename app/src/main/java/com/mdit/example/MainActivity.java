@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void click1(View v){
 
-        Test t =  LogByCgLib.getProxy(Test.class);
+        Test t =  LogByCgLib.getProxy(new Test());
         t.toast2(this);
-        Test.teststatic(this);
+        //Test.teststatic(this);
 
         /*Enhancer enhancer = new Enhancer(this);
         enhancer.setSuperclass(Test.class);

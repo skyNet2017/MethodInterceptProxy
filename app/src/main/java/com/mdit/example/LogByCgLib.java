@@ -21,9 +21,9 @@ public class LogByCgLib {
         LogByCgLib.context = context;
     }
 
-    public static <T> T getProxy(Class<T> clazz){
+    public static <T> T getProxy(final T realObj){
         Enhancer enhancer = new Enhancer(context);
-        enhancer.setSuperclass(clazz);
+        enhancer.setSuperclass(realObj.getClass());
         enhancer.setCallbackFilter(new CallbackFilter() {
             @Override
             public int accept(Method method) {

@@ -227,13 +227,18 @@ public class Enhancer {
 			Local tmpNumberLocal = code.newLocal(objectType);
 			retObjLocal = code.newLocal(TypeId.OBJECT);
 
-			//静态方法调用,会在这里崩溃
-			thisLocal = code.getThis(subType);
-			code.iget(fieldId, methodInterceptorLocal, thisLocal);
-			code.iget(fieldFilterId,callbackFilterLocal,thisLocal);
-			code.iget(fieldIds,methodInterceptorsLocal,thisLocal);
-			code.loadConstant(methodNameLocal, methodName);
-			code.invokeVirtual(subType.getMethod(classType, "getClass"), subClassLocal, thisLocal);
+			try {
+				//静态方法调用,会在这里崩溃
+				thisLocal = code.getThis(subType);
+				code.iget(fieldId, methodInterceptorLocal, thisLocal);
+				code.iget(fieldFilterId,callbackFilterLocal,thisLocal);
+				code.iget(fieldIds,methodInterceptorsLocal,thisLocal);
+				code.loadConstant(methodNameLocal, methodName);
+				code.invokeVirtual(subType.getMethod(classType, "getClass"), subClassLocal, thisLocal);
+			}catch (Throwable throwable){
+				throwable.printStackTrace();
+			}
+
 
 			if (hasParams) {
 				code.loadConstant(intLocal, argsClass.length);
@@ -297,16 +302,21 @@ public class Enhancer {
 			code = dexMaker.declare(subMethodId, method.getModifiers());
 			retLocal = code.newLocal(methodReturnType);
 			Local[] superArgsValueLocal = null;
-			thisLocal = code.getThis(subType);
-			if (hasParams) {
-				superArgsValueLocal = new Local[argsClass.length];
-				for (int i=0; i<argsClass.length; i++) {
-					superArgsValueLocal[i] = code.getParameter(i, argsTypeId[i]);
+			try {
+				thisLocal = code.getThis(subType);
+				if (hasParams) {
+					superArgsValueLocal = new Local[argsClass.length];
+					for (int i=0; i<argsClass.length; i++) {
+						superArgsValueLocal[i] = code.getParameter(i, argsTypeId[i]);
+					}
+					code.invokeSuper(superMethodId, isVoid ? null : retLocal, thisLocal, superArgsValueLocal);
+				} else {
+					code.invokeSuper(superMethodId, isVoid ? null : retLocal, thisLocal);
 				}
-				code.invokeSuper(superMethodId, isVoid ? null : retLocal, thisLocal, superArgsValueLocal);
-			} else {
-				code.invokeSuper(superMethodId, isVoid ? null : retLocal, thisLocal);
+			}catch (Throwable throwable){
+				throwable.printStackTrace();
 			}
+
 			if (isVoid) {
 				code.returnVoid();
 			} else {
