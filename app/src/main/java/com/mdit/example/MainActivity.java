@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Test test = (Test) enhancer.create();
+        Log.e("TAG","test :"+test);
 
         test.toast2(this);
 
