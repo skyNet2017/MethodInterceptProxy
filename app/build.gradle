@@ -28,5 +28,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     //compile project(':mdlibrary')
 
-    compile 'me.weishu:epic:0.6.0'
+    //compile 'me.weishu:epic:0.6.0'
 }

@@ -1,8 +1,9 @@
 package com.mdit.example;
 
 import android.content.Context;
+import android.util.Log;
 
-import com.taobao.android.dexposed.utility.Logger;
+
 
 import leo.android.cglib.proxy.Enhancer;
 import leo.android.cglib.proxy.MethodInterceptor;
@@ -29,9 +30,9 @@ public class MyProxy implements MethodInterceptor {
 
     @Override
     public Object intercept(Object object, Object[] args, MethodProxy methodProxy) throws Exception {
-        Logger.d("MyProxy","begin print");
+        Log.d("MyProxy","begin print");
         Object result = methodProxy.invokeSuper(object, args);
-        Logger.d("MyProxy","end print");
+        Log.d("MyProxy","end print");
         return result;
     }
 }

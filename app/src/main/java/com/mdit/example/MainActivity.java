@@ -7,11 +7,10 @@ import android.util.Printer;
 import android.view.View;
 
 import com.mdit.example.test.Test;
-import com.taobao.android.dexposed.DexposedBridge;
-import com.taobao.android.dexposed.XC_MethodHook;
 
-
-import java.lang.reflect.Method;
+import leo.android.cglib.proxy.Enhancer;
+import leo.android.cglib.proxy.MethodInterceptor;
+import leo.android.cglib.proxy.MethodProxy;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void click1(View v){
 
-        /*Enhancer enhancer = new Enhancer(this);
+        Enhancer enhancer = new Enhancer(this);
         enhancer.setSuperclass(Test.class);
-        enhancer.setCallback(new MethodInterceptor() {
+        enhancer.setInterceptor(new MethodInterceptor() {
             @Override
             public Object intercept(Object object, Object[] args, MethodProxy methodProxy) throws Exception {
                 Log.e("TAG","intercept  -- before---");
@@ -40,19 +39,9 @@ public class MainActivity extends AppCompatActivity {
         });
         Test test = (Test) enhancer.create();
 
-        test.toast2(this);*/
+        test.toast2(this);
 
-        DexposedBridge.hookAllMethods(Test.class, "", new XC_MethodHook() {
-            @Override
-            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                super.beforeHookedMethod(param);
-            }
 
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                super.afterHookedMethod(param);
-            }
-        });
 
 
     }

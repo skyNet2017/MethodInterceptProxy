@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MethodInterceptProxy.iml" filepath="$PROJECT_DIR$/MethodInterceptProxy.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mdlibrary/mdlibrary.iml" filepath="$PROJECT_DIR$/mdlibrary/mdlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MethodInterceptProxy.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MethodInterceptProxy.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mdlibrary/MethodInterceptProxy.mdlibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/mdlibrary/MethodInterceptProxy.mdlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/github.MethodInterceptProxy.iml" filepath="$PROJECT_DIR$/.idea/modules/github.MethodInterceptProxy.iml" />
     </modules>
   </component>
 </project>
