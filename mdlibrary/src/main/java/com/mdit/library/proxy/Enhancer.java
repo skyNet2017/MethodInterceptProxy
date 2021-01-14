@@ -178,35 +178,35 @@ public class Enhancer {
 
 			code = dexMaker.declare(subMethodId, method.getModifiers());
 
-//			if (Modifier.isStatic(method.getModifiers())){
-////				Local tmpNumberLocal = null;
-//				Local retLocal = code.newLocal(methodReturnType);
-//
-//				TypeId supType = TypeId.get(superclass);
-////				tmpNumberLocal = code.newLocal(TypeId.get(Object.class));
-//				if (hasParams) {
-//					Local[] local = new Local[argsTypeId.length];
-//					for (int i=0; i<argsTypeId.length; i++) {
-//						local[i] = code.newLocal(argsTypeId[i]);//;
-//					}
-//
-//					MethodId methodID
-//							= supType.getMethod(methodReturnType, methodName, argsTypeId);
-//					code.invokeStatic(methodID, retLocal, local);
-//
-//				}else {
-//					MethodId methodID
-//							= supType.getMethod(methodReturnType, methodName);
-//					code.invokeStatic(methodID, retLocal);
-//				}
-//				if (isVoid){
-//					code.returnVoid();
-//				}else {
-////					code.cast(retLocal, tmpNumberLocal);
-//					code.returnValue(retLocal);
-//				}
-//				continue;
-//			}
+			/*if (Modifier.isStatic(method.getModifiers())){
+				Local tmpNumberLocal = null;
+				Local retLocal = code.newLocal(methodReturnType);
+
+				TypeId supType = TypeId.get(superclass);
+				tmpNumberLocal = code.newLocal(TypeId.get(Object.class));
+			if (hasParams) {
+					Local[] local = new Local[argsTypeId.length];
+					for (int i=0; i<argsTypeId.length; i++) {
+						local[i] = code.newLocal(argsTypeId[i]);//;
+					}
+
+					MethodId methodID
+						= supType.getMethod(methodReturnType, methodName, argsTypeId);
+					code.invokeStatic(methodID, retLocal, local);
+
+			}else {
+					MethodId methodID
+							= supType.getMethod(methodReturnType, methodName);
+					code.invokeStatic(methodID, retLocal);
+				}
+				if (isVoid){
+					code.returnVoid();
+				}else {
+					code.cast(retLocal, tmpNumberLocal);
+				code.returnValue(retLocal);
+				}
+				continue;
+			}*/
 
 			Local retLocal = code.newLocal(methodReturnType);
 			Local retPackLocal = null;
@@ -227,6 +227,7 @@ public class Enhancer {
 			Local tmpNumberLocal = code.newLocal(objectType);
 			retObjLocal = code.newLocal(TypeId.OBJECT);
 
+			//静态方法调用,会在这里崩溃
 			thisLocal = code.getThis(subType);
 			code.iget(fieldId, methodInterceptorLocal, thisLocal);
 			code.iget(fieldFilterId,callbackFilterLocal,thisLocal);

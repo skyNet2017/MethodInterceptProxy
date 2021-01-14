@@ -22,13 +22,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LogByCgLib.init(getApplicationContext());
         setContentView(R.layout.activity_main);
     }
 
 
     public void click1(View v){
 
-        Enhancer enhancer = new Enhancer(this);
+        Test t =  LogByCgLib.getProxy(Test.class);
+        t.toast2(this);
+        Test.teststatic(this);
+
+        /*Enhancer enhancer = new Enhancer(this);
         enhancer.setSuperclass(Test.class);
         enhancer.setCallback(new MethodInterceptor() {
             @Override
@@ -42,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Test test = (Test) enhancer.create();
         Log.e("TAG","test :"+test);
 
-        test.toast2(this);
+        test.toast2(this);*/
 
 
     }

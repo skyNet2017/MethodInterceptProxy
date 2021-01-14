@@ -14,6 +14,10 @@ import android.widget.Toast;
 
 public class Test {
 
+
+    public Test() {
+    }
+
     public void toast1(Context ctx){
         Toast.makeText(ctx, "--111111----", Toast.LENGTH_SHORT).show();
     }
@@ -28,6 +32,10 @@ public class Test {
 
     public void toast3(Context ctx){
         Toast.makeText(ctx, "--333333----", Toast.LENGTH_SHORT).show();
+    }
+
+    public static void teststatic(Context ctx){
+        Toast.makeText(ctx, "--teststatic----", Toast.LENGTH_SHORT).show();
     }
 
 
